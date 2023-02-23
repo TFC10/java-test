@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.mapper.UserMapper">
+
+    <!--
+        mapper接口和映射文件要保证两个一致：
+        1.mapper的全类名和映射文件的namespace一致
+        2.mapper接口中方法名要和映射文件中sql的id保持一致
+    -->
+
+    <!-- insertUser(); -->
+    <insert id="insertUser">
+        insert into t_user values(null,'tfc','123456',23,'男','123456@qq.com')
+    </insert>
+
+    <update id="updateUser">
+        update t_user set username = 'root',password='123' where id = 3
+    </update>
+
+    <delete id="deleteUser">
+        delete from t_user where id = 6
+    </delete>
+
+    <!--
+    根据用户查询信息一般还需要设置结果类型或者自定义映射，否则会报错
+    resultType：设置结果类型，即查询的数据要转换为java的数据类型
+    resultMap：自定义映射，处理多对一或一对多的映射文件，一般你要返回一个结果为某一个类对象类时设置
+    -->
+    <select id="getUserId" resultType="org.example.pojo.User">
+        select * from t_user where id = 2
+    </select>
+
+    <select id="getAllUser" resultType="abc">
+        select * from t_user
+    </select>
+
+</mapper>
